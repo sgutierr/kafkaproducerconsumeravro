@@ -13,6 +13,13 @@ Install an APIcurio Servie Registry and copy the  `Service Registry URL` value. 
 
 # Demo steps:
 
+## 0. Preparing certificate 
+  1. Extracting the cluster certificate from OCP, example from Kafka namespace:
+ **`oc extract secret/my-cluster-cluster-ca-cert --keys=ca.crt `**
+ 
+ 2. Generate a `truststore.jks` file with `password` as the store password. Store the KeyStore files in your workspace:
+ **`keytool -import -trustcacerts -alias root -file kafka-cluster.crt -keystore truststore.jks -storepass password -noprompt`**
+
 ## 1. Review configuration 
 
  - By using your editor of choice, open the `pom.xml` file and check the `quarkus-apicurio-registry-avro` dependency.
